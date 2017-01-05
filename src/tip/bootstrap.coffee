@@ -17,6 +17,7 @@ class Tourist.Tip.Bootstrap extends Tourist.Tip.Base
 
   # Show the tip
   show: ->
+    @tip.el.wrapAll("<div class='tourist-overlay'></div>")
     if @options.showEffect
       fn = Tourist.Tip.Bootstrap.effects[@options.showEffect]
       fn.call(this, @tip, @tip.el)
@@ -25,6 +26,7 @@ class Tourist.Tip.Bootstrap extends Tourist.Tip.Base
 
   # Hide the tip
   hide: ->
+    @tip.el.parent().replaceWith($(".popover.tourist-popover"))
     if @options.hideEffect
       fn = Tourist.Tip.Bootstrap.effects[@options.hideEffect]
       fn.call(this, @tip, @tip.el)
@@ -120,10 +122,10 @@ positioning as qtip2:
 class Tourist.Tip.BootstrapTip
 
   template: '''
-    <div class="popover tourist-popover">
-      <div class="arrow"></div>
-      <div class="popover-content"></div>
-    </div>
+      <div class="popover tourist-popover">
+        <div class="arrow"></div>
+        <div class="popover-content"></div>
+      </div>
   '''
 
   FLIP_POSITION:

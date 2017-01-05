@@ -40,9 +40,9 @@
 
     _.extend(Base.prototype, Backbone.Events);
 
-    Base.prototype.skipButtonTemplate = '<button class="btn btn-default btn-sm pull-right tour-next">Skip this step →</button>';
+    Base.prototype.skipButtonTemplate = '<button class="btn btn-default btn-sm pull-right tour-next">Skip</button>';
 
-    Base.prototype.nextButtonTemplate = '<button class="btn btn-primary btn-sm pull-right tour-next">Next step →</button>';
+    Base.prototype.nextButtonTemplate = '<button class="btn btn-primary btn-sm pull-right tour-next">Next</button>';
 
     Base.prototype.finalButtonTemplate = '<button class="btn btn-primary btn-sm pull-right tour-next">Finish up</button>';
 
@@ -56,7 +56,7 @@
 
     Base.prototype.highlightClass = 'tour-highlight';
 
-    Base.prototype.template = _.template('<div>\n  <div class="tour-container">\n    <%= close_button %>\n    <%= content %>\n    <p class="tour-counter <%= counter_class %>"><%= counter%></p>\n  </div>\n  <div class="tour-buttons">\n    <%= buttons %>\n  </div>\n</div>');
+    Base.prototype.template = _.template('<div class="tour-container">\n  <%= close_button %>\n  <%= content %>\n  <p class="tour-counter <%= counter_class %>"><%= counter%></p>\n</div>\n<div class="tour-buttons">\n  <%= buttons %>\n</div>');
 
     function Base(options) {
       this.options = options != null ? options : {};
@@ -258,6 +258,7 @@
 
     Bootstrap.prototype.show = function() {
       var fn;
+      this.tip.el.wrapAll("<div class='tourist-overlay'></div>");
       if (this.options.showEffect) {
         fn = Tourist.Tip.Bootstrap.effects[this.options.showEffect];
         return fn.call(this, this.tip, this.tip.el);
@@ -268,6 +269,7 @@
 
     Bootstrap.prototype.hide = function() {
       var fn;
+      this.tip.el.parent().replaceWith($(".popover.tourist-popover"));
       if (this.options.hideEffect) {
         fn = Tourist.Tip.Bootstrap.effects[this.options.hideEffect];
         return fn.call(this, this.tip, this.tip.el);

@@ -10,8 +10,8 @@ class Tourist.Tip.Base
   _.extend @prototype, Backbone.Events
 
   # You can override any of thsee templates for your own stuff
-  skipButtonTemplate: '<button class="btn btn-default btn-sm pull-right tour-next">Skip this step →</button>'
-  nextButtonTemplate: '<button class="btn btn-primary btn-sm pull-right tour-next">Next step →</button>'
+  skipButtonTemplate: '<button class="btn btn-default btn-sm pull-right tour-next">Skip</button>'
+  nextButtonTemplate: '<button class="btn btn-primary btn-sm pull-right tour-next">Next</button>'
   finalButtonTemplate: '<button class="btn btn-primary btn-sm pull-right tour-next">Finish up</button>'
 
   closeButtonTemplate: '<a class="btn btn-close tour-close" href="#"><i class="icon icon-remove"></i></a>'
@@ -23,7 +23,6 @@ class Tourist.Tip.Base
   highlightClass: 'tour-highlight'
 
   template: _.template '''
-    <div>
       <div class="tour-container">
         <%= close_button %>
         <%= content %>
@@ -32,7 +31,6 @@ class Tourist.Tip.Base
       <div class="tour-buttons">
         <%= buttons %>
       </div>
-    </div>
   '''
 
   # options -
