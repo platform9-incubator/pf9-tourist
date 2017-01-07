@@ -15,12 +15,12 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       window.location.hash = "#/tour/addhosts";
       var self = this;
-      $('#tour-add-host').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('#tour-add-host'), self);
                 tour.view.show()
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait)
     },
     my: 'left top',
     at: 'right center',
@@ -29,13 +29,12 @@ window.pf9_modules['overview_tour'] = function(){
     content: '<p>Platform9 Managed OpenStack delivers an as-a-Service experience, which means that you do not deal with OpenStack configuration nitty gritty.</p> <p>You simply start by adding your physical servers and making them compute, storage, or networking nodes.</p>',
     setup: function(tour, options) {
       $('#leftnav-infrastructure').click();
-      var self = this;
-      $('#new-host-btn').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('#new-host-btn'), self);
                 tour.view.show()
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, long_wait)
     },
     nextButton: true,
     at: 'bottom center',
@@ -45,13 +44,13 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       $('#new-host-btn').click();
       var self = this;
-      $('#download-host-agent-dropdown').waitUntilExists(function() {
+      setTimeout(function(){
                 $('#installer-download').click();
                 tour.view.setTarget($('#download-host-agent-dropdown'), self);
                 tour.view.show()
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait)
     },
     nextButton: true,
     at: 'right center',
@@ -59,34 +58,34 @@ window.pf9_modules['overview_tour'] = function(){
     content: '<p>Once you install the agent on your Linux servers, the agent makes outbound call to the cloud hosted controller, which then can deploy OpenStack software components in your infrastructure in minutes!</p>',
     setup: function(tour, options) {
       var self = this;
-      $("code#installer-invocation").click();
-      $('#hostagent-gif').waitUntilExists(function() {
+      setTimeout(function(){
+          $("code#installer-invocation").click();
           tour.view.show()
           var spot = get_spot_position();
           $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-          $(".tourist-overlay").append("<div> <img id='hostagent-gif' src='images/hostagent-install.gif'  style='display: block; margin-left: auto; margin-right:auto'> </div>");
+          $(".tourist-overlay").append("<div > <img id='hostagent-gif' src='images/hostagent-install.gif'  style='display: block; margin-left: auto; margin-right:auto'> </div>");
           tour.view.setTarget($('#hostagent-gif'), self);
-      });
+      }, short_wait)
     },
     nextButton: true,
-    my: 'top center',
-    at: 'bottom center',
+    at: 'left center',
+    my: 'bottom center',
   },{
     content: '<p> The servers report for duty on your Platform9 portal awaiting authorization. Once you authorize them to be part of your OpenStack cloud, you can configure various compute, storage, and networking options to finish your OpenStack deployment.</p>',
     setup: function(tour, options, view) {
       $('#leftnav-infrastructure').click();
       var self = this;
-      $('#auth-hosts').waitUntilExists(function() {
+      setTimeout(function(){
           tour.view.show()
           var spot = get_spot_position();
           $(".tourist-overlay").css("background","radial-gradient(circle 1px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
           $(".tourist-overlay").append("<div > <img id='auth-hosts' src='images/auth-hosts.png'  style='display: block; margin-left: auto; margin-right:auto'; width='85%'> </div>");
           tour.view.setTarget($('#auth-hosts'), self);
-      });
+      }, short_wait)
     },
     nextButton: true,
     my: 'top center',
-    at: 'bottom center',
+    at: 'top center',
   },{
     content: '<p> Did you know that Platform9 supports a fully functional Software-Defined Networking out of the box?\
     This is how you configure options for your Neutron SDN. By simply specifying a few options in our user interface,\
@@ -94,15 +93,15 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       var self = this;
       $('#leftnav-networks').click();
-      $('#networking-config-tab a').waitUntilExists(function() {
+      setTimeout(function(){
               $('#networking-config-tab a').click();
-      });
-      $('#dhcp-dns').waitUntilExists(function() {
+      }, short_wait);
+      setTimeout(function(){
                 tour.view.show();
                 tour.view.setTarget($('#dhcp-dns'), self);
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, long_wait);
     },
     nextButton: true,
     my: 'bottom center',
@@ -112,7 +111,7 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       $('#leftnav-infrastructure').click();
       var self = this;
-      $('div.online').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('div.online'), self);
                 tour.view.show();
                 $('input:radio').filter(':first').click();
@@ -120,7 +119,7 @@ window.pf9_modules['overview_tour'] = function(){
                 $('button.edit-host').click();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait);
     },
     nextButton: true,
     my: 'left center',
@@ -133,12 +132,12 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       $('#leftnav-infrastructure').click();
       var self = this;
-      $('div.online').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('div.online'), self);
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait);
     },
     nextButton: true,
     my: 'left center',
@@ -152,12 +151,12 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       $('#leftnav-infrastructure').click();
       var self = this;
-      $('div.online').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('div.online'), self);
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait);
     },
     nextButton: true,
     my: 'left center',
@@ -169,12 +168,12 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       $('#leftnav-images').click();
       var self = this;
-      $('.fa-question-circle').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('.fa-question-circle'), self);
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait);
     },
     nextButton: true,
     my: 'left center',
@@ -184,12 +183,12 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       $('#leftnav-instances').click();
       var self = this;
-      $('.fa-ellipsis-h').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('.fa-ellipsis-h'), self);
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait);
     },
     nextButton: true,
     my: 'left center',
@@ -200,12 +199,12 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       $('#leftnav-applications').click();
       var self = this;
-      $('div.murano-application:last-child').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('div.murano-application:last-child'), self);
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait);
     },
     nextButton: true,
     my: 'top right',
@@ -216,12 +215,12 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       $('#leftnav-storage').click();
       var self = this;
-      $('#new-volume-btn').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('#new-volume-btn'), self);
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait);
     },
     nextButton: true,
     at: 'bottom center',
@@ -232,12 +231,12 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       $('#leftnav-networks').click();
       var self = this;
-      $('.network-tenant').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('.network-tenant'), self);
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait);
     },
     nextButton: true,
     at: 'right center',
@@ -248,12 +247,12 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       $('#leftnav-users').click();
       var self = this;
-      $('#tenant-description').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('#tenant-description'), self);
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait);
     },
     nextButton: true,
     at: 'right center',
@@ -264,12 +263,12 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       $('#leftnav-events-alarms').click();
       var self = this;
-      $('#alarm-state').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('#alarm-state'), self);
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait);
     },
     nextButton: true,
     at: 'right center',
@@ -280,12 +279,12 @@ window.pf9_modules['overview_tour'] = function(){
     setup: function(tour, options, view) {
       window.location.hash = '#/security#api_access'
       var self = this;
-      $('#api-access-type').waitUntilExists(function() {
+      setTimeout(function(){
                 tour.view.setTarget($('#api-access-type'), self);
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      });
+      }, short_wait);
     },
     nextButton: true,
     at: 'right center',
