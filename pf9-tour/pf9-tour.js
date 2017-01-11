@@ -2,7 +2,7 @@ window.pf9_modules = {}
 window.pf9_modules['overview_tour'] = function(){
   $(".popover.tourist-popover").remove();
   short_wait = 300;
-  long_wait = 600;
+  long_wait = 750;
   var get_spot_position  = function() {
       var pos = $(".tourist-popover").position();
       var arrow = $(".arrow").position();
@@ -24,6 +24,7 @@ window.pf9_modules['overview_tour'] = function(){
     },
     my: 'left top',
     at: 'right center',
+    closeButton: true,
     nextButton: true
   },{
     content: '<p>Platform9 Managed OpenStack delivers an as-a-Service experience, which means that you do not deal with OpenStack configuration nitty gritty.</p> <p>You simply start by adding your physical servers and making them compute, storage, or networking nodes.</p>',
@@ -37,6 +38,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, long_wait)
     },
     nextButton: true,
+    closeButton: true,
     at: 'bottom center',
     my: 'top right',
   },{
@@ -53,6 +55,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, short_wait)
     },
     nextButton: true,
+    closeButton: true,
     at: 'right center',
   },{
     content: '<p>Once you install the agent on your Linux servers, the agent makes outbound call to the cloud hosted controller, which then can deploy OpenStack software components in your infrastructure in minutes!</p>',
@@ -68,6 +71,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, short_wait)
     },
     nextButton: true,
+    closeButton: true,
     at: 'left center',
     my: 'bottom center',
   },{
@@ -84,6 +88,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, short_wait)
     },
     nextButton: true,
+    closeButton: true,
     my: 'top center',
     at: 'top center',
   },{
@@ -104,6 +109,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, long_wait);
     },
     nextButton: true,
+    closeButton: true,
     my: 'bottom center',
     at: 'right center',
   },{
@@ -122,6 +128,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, short_wait);
     },
     nextButton: true,
+    closeButton: true,
     my: 'left center',
     at: 'right center',
   },{
@@ -140,6 +147,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, short_wait);
     },
     nextButton: true,
+    closeButton: true,
     my: 'left center',
     at: 'right center',
   },{
@@ -159,6 +167,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, short_wait);
     },
     nextButton: true,
+    closeButton: true,
     my: 'left center',
     at: 'right center',
   },{
@@ -176,6 +185,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, short_wait);
     },
     nextButton: true,
+    closeButton: true,
     my: 'left center',
     at: 'right center',
   },{
@@ -184,13 +194,14 @@ window.pf9_modules['overview_tour'] = function(){
       $('#leftnav-instances').click();
       var self = this;
       setTimeout(function(){
-                tour.view.setTarget($('.fa-ellipsis-h'), self);
+                tour.view.setTarget($('.fa-trash'), self);
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
       }, short_wait);
     },
     nextButton: true,
+    closeButton: true,
     my: 'left center',
   },{
     content: "<p> The Murano application catalog lets your deploy simple single VM applications, or complex multi-tier applications via single click. </p>\
@@ -200,15 +211,16 @@ window.pf9_modules['overview_tour'] = function(){
       $('#leftnav-applications').click();
       var self = this;
       setTimeout(function(){
-                tour.view.setTarget($('div.murano-application:last-child'), self);
+                tour.view.setTarget($('div.murano-application:first-child'), self);
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
       }, short_wait);
     },
     nextButton: true,
-    my: 'top right',
-    at: 'bottom center',
+    closeButton: true,
+    at: 'right center',
+    my: 'left center',
   },{
     content: "<p> The Cinder Block Storage management lets you integrate and manage your local storage or iSCSI/NFS shared storage (such as NetApp, Pure, Tintri, and various other off-the-shelf solutions) as a datastore.</p>\
     <p> You can integrate with multiple storage endpoints, create volume types of each, and hence manage them as different tiers of storage. </p>",
@@ -223,6 +235,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, short_wait);
     },
     nextButton: true,
+    closeButton: true,
     at: 'bottom center',
     my: 'top right',
   },{
@@ -239,6 +252,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, short_wait);
     },
     nextButton: true,
+    closeButton: true,
     at: 'right center',
   },{
     content: "<p> This is the multi-tenancy view via Keystone. Platform9 creates a federated keystone deployment so your various OpenStack regions spread across multiple datacenters\
@@ -255,6 +269,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, short_wait);
     },
     nextButton: true,
+    closeButton: true,
     at: 'right center',
   },{
     content: "<p> Events and Alarms menu exposes you to ceilometer events and alarms management. We predefine a set of events and alarms that we consider important, mainly around hosts and VMs.</p>\
@@ -271,6 +286,7 @@ window.pf9_modules['overview_tour'] = function(){
       }, short_wait);
     },
     nextButton: true,
+    closeButton: true,
     at: 'right center',
   },{
     content: '<p> Finally, API Access provides you details of all the OpenStack endpoints that you can connect to and use for your API and CLI automation.</p>\
@@ -287,11 +303,43 @@ window.pf9_modules['overview_tour'] = function(){
       }, short_wait);
     },
     nextButton: true,
-    at: 'right center',
+    closeButton: true,
+    at: 'left center',
+  },{
+    content: '<p>You can come back and take the tour anytime from here</p>',
+    setup: function(tour, options, view) {
+      var self = this;
+      setTimeout(function(){
+                tour.view.setTarget($('#pf9-tour'), self);
+                tour.view.show();
+                var spot = get_spot_position();
+                $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
+      }, short_wait);
+    },
+    my: 'top center',
+    at: 'top center',
+    okButton: true,
   }]
+
+  CANCEL = {
+    content: '<p>You can come back and take the tour anytime from here</p>',
+    setup: function(tour, options, view) {
+      var self = this;
+      setTimeout(function(){
+                tour.view.setTarget($('#pf9-tour'), self);
+                tour.view.show();
+                var spot = get_spot_position();
+                $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
+      }, short_wait);
+    },
+    my: 'top center',
+    at: 'top center',
+    okButton: true,
+  };
 
   TOUR = new Tourist.Tour({
     steps: STEPS,
+    cancelStep: CANCEL,
     tipOptions:{
       showEffect: 'slidein'
     }

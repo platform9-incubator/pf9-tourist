@@ -14,7 +14,7 @@ class Tourist.Tip.Base
   nextButtonTemplate: '<button class="btn btn-primary btn-sm pull-right tour-next">Next</button>'
   finalButtonTemplate: '<button class="btn btn-primary btn-sm pull-right tour-next">Finish up</button>'
 
-  closeButtonTemplate: '<a class="btn btn-close tour-close" href="#"><i class="icon icon-remove"></i></a>'
+  closeButtonTemplate: '<a class="btn btn-close tour-close" href="#"><i class="fa fa-lg fa-times-circle"></i></a>'
   okButtonTemplate: '<button class="btn btn-sm tour-close btn-primary">Okay</button>'
 
   actionLabelTemplate: _.template '<h4 class="action-label"><%= label %></h4>'

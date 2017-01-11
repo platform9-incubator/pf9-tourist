@@ -46,7 +46,7 @@
 
     Base.prototype.finalButtonTemplate = '<button class="btn btn-primary btn-sm pull-right tour-next">Finish up</button>';
 
-    Base.prototype.closeButtonTemplate = '<a class="btn btn-close tour-close" href="#"><i class="icon icon-remove"></i></a>';
+    Base.prototype.closeButtonTemplate = '<a class="btn btn-close tour-close" href="#"><i class="fa fa-lg fa-times-circle"></i></a>';
 
     Base.prototype.okButtonTemplate = '<button class="btn btn-sm tour-close btn-primary">Okay</button>';
 
