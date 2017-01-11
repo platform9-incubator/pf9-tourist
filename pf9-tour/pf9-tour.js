@@ -67,13 +67,17 @@ window.pf9_modules['overview_tour'] = function(){
           var spot = get_spot_position();
           $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
           $(".tourist-overlay").append("<div > <img id='hostagent-gif' src='images/hostagent-install.gif'  style='display: block; margin-left: auto; margin-right:auto'> </div>");
-          tour.view.setTarget($('#hostagent-gif'), self);
       }, short_wait)
+      var xpos = Math.floor(window.innerWidth * .6);
+      console.log(xpos);
+      return { target:[xpos, window.innerHeight/2]};
+    },
+    teardown: function(tour, options) {
+      tour.view.hide()
     },
     nextButton: true,
     closeButton: true,
-    at: 'left center',
-    my: 'bottom center',
+    my: 'left center',
   },{
     content: '<p> The servers report for duty on your Platform9 portal awaiting authorization. Once you authorize them to be part of your OpenStack cloud, you can configure various compute, storage, and networking options to finish your OpenStack deployment.</p>',
     setup: function(tour, options, view) {
@@ -300,7 +304,7 @@ window.pf9_modules['overview_tour'] = function(){
                 tour.view.show();
                 var spot = get_spot_position();
                 $(".tourist-overlay").css("background","radial-gradient(circle 400px at " + spot.left + "px " +  " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
-      }, short_wait);
+      }, long_wait);
     },
     nextButton: true,
     closeButton: true,
