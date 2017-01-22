@@ -4,3 +4,6 @@ test/lib
 node_modules/*
 tourist.coffee
 .grunt
+build/
+pf9-tour/node_modules/*
+.idea/

@@ -1,0 +1,2 @@
+gulp
+bash reload.sh
