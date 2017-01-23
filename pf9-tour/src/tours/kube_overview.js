@@ -7,16 +7,23 @@ export function kube_overview() {
     the first step is to add your AWS endpoint as a cloud provider.</p>\
     <p> You can have multiple cloud providers of the same type. </p>",
         setup: function (tour, options, view) {
-            window.location.hash = '#/infrastructureK8s#cps';
-            var self = this;
-            setTimeout(function() {
-              tour.view.setTarget($("#new-cloud-provider-btn"), self);
-              tour.view.show();
-              add_spotlight_overlay();
-            }, long_wait);
+          window.location.hash = '#/infrastructureK8s#cps';
+          var myInterval = setInterval(function() {
+            if($("#new-cloud-provider-btn")[0].getBoundingClientRect().width === 0){
+                console.log("Bounding rectangle is non-existent, retrying...");
+            } else {
+                console.log("OK");
+                clearInterval(myInterval);
+                var self = this;
+                tour.view.setTarget($("#new-cloud-provider-btn"), self);
+                tour.view.show();
+                add_spotlight_overlay();
+            }
+          }, short_wait);
         },
         at: 'bottom center',
         my: 'top right',
+        viewport: $("#main-content"),
         closeButton: true,
         nextButton: true
     }, {
@@ -26,11 +33,18 @@ export function kube_overview() {
         ' the scene. </p> <p><a href="https://platform9.com/support/create-multi-master-highly-available-kubernetes-clusters/" target="_blank"> https://platform9.com/support/create-multi-master-highly-available-kubernetes-clusters/ </a></p>',
         setup: function (tour, options) {
             window.location.hash = '#/kubernetes/new/cluster';
-            setTimeout(function () {
-                tour.view.setTarget($('div.radio'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait)
+            var myInterval = setInterval(function() {
+              if($("div.radio")[0].getBoundingClientRect().width === 0){
+                  console.log("Bounding rectangle is non-existent, retrying...");
+              } else {
+                  console.log("OK");
+                  clearInterval(myInterval);
+                  var self = this;
+                  tour.view.setTarget($('div.radio'), self);
+                  tour.view.show();
+                  add_spotlight_overlay();
+              }
+            }, short_wait);
         },
         nextButton: true,
         closeButton: true,
@@ -39,12 +53,18 @@ export function kube_overview() {
         " to Nodes -> Add Nodes menu.</p>",
         setup: function (tour, options, view) {
             window.location.hash = '#/infrastructureK8s#nodes';
-            var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('#new-node-btn'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait)
+            var myInterval = setInterval(function() {
+              if($("#new-node-btn")[0].getBoundingClientRect().width === 0){
+                  console.log("Bounding rectangle is non-existent, retrying...");
+              } else {
+                  console.log("OK");
+                  clearInterval(myInterval);
+                  var self = this;
+                  tour.view.setTarget($('#new-node-btn'), self);
+                  tour.view.show();
+                  add_spotlight_overlay();
+              }
+            }, short_wait);
         },
         nextButton: true,
         closeButton: true,
@@ -55,12 +75,18 @@ export function kube_overview() {
         " for Kubernetes, then authorize the servers using the Platform9 web UI!</p>",
         setup: function (tour, options) {
             window.location.hash = '#/infrastructureK8s/addnodes';
-            var self = this;
-            setTimeout(function () {
-                $('.installer-button').click();
-                tour.view.setTarget($('#download-host-agent-dropdown'), self);
-                tour.view.show();
-                add_spotlight_overlay();
+            $('.installer-button').click();
+            var myInterval = setInterval(function() {
+              if($("#download-host-agent-dropdown")[0].getBoundingClientRect().width === 0){
+                  console.log("Bounding rectangle is non-existent, retrying...");
+              } else {
+                  console.log("OK");
+                  clearInterval(myInterval);
+                  var self = this;
+                  tour.view.setTarget($('#download-host-agent-dropdown'), self);
+                  tour.view.show();
+                  add_spotlight_overlay();
+              }
             }, short_wait);
         },
         nextButton: true,
@@ -87,11 +113,17 @@ export function kube_overview() {
         content: '<p> Managed Kubernetes supports multi-tenancy out of the box. You can create one or more tenants, map one or more clusters to each' +
         ' tenant and ass users to be members of tenants.</p>',
         setup: function (tour, options, view) {
-            var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('#leftnav-users'), self);
-                tour.view.show();
-                add_spotlight_overlay();
+            var myInterval = setInterval(function() {
+              if($("#leftnav-users")[0].getBoundingClientRect().width === 0){
+                  console.log("Bounding rectangle is non-existent, retrying...");
+              } else {
+                  console.log("OK");
+                  clearInterval(myInterval);
+                  var self = this;
+                  tour.view.setTarget($('#leftnav-users'), self);
+                  tour.view.show();
+                  add_spotlight_overlay();
+              }
             }, short_wait);
         },
         nextButton: true,
@@ -100,11 +132,17 @@ export function kube_overview() {
         content: "<p> Finally, the built-in CLI lets you connect to any cluster you've created and run Kubernetes commands directly from the web browser.</p>",
         setup: function (tour, options, view) {
             $('#leftnav-cli').click();
-            var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('#terminal-iframe-header'), self);
-                tour.view.show();
-                add_spotlight_overlay();
+            var myInterval = setInterval(function() {
+              if($("#terminal-iframe-header")[0].getBoundingClientRect().width === 0){
+                  console.log("Bounding rectangle is non-existent, retrying...");
+              } else {
+                  console.log("OK");
+                  clearInterval(myInterval);
+                  var self = this;
+                  tour.view.setTarget($('#terminal-iframe-header'), self);
+                  tour.view.show();
+                  add_spotlight_overlay();
+              }
             }, short_wait);
         },
         teardown: function(tour, options, view) {
@@ -117,11 +155,17 @@ export function kube_overview() {
     }, {
         content: '<p>Congragulations! You have now completed the tour of Platform9 Managed Kubernetes. You can come back and take the tour anytime from here.</p>',
         setup: function (tour, options, view) {
-            var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('#pf9-tour'), self);
-                tour.view.show();
-                add_spotlight_overlay();
+            var myInterval = setInterval(function() {
+              if($("#pf9-tour")[0].getBoundingClientRect().width === 0){
+                  console.log("Bounding rectangle is non-existent, retrying...");
+              } else {
+                  console.log("OK");
+                  clearInterval(myInterval);
+                  var self = this;
+                  tour.view.setTarget($('#pf9-tour'), self);
+                  tour.view.show();
+                  add_spotlight_overlay();
+              }
             }, short_wait);
         },
         my: 'top center',
@@ -132,12 +176,17 @@ export function kube_overview() {
     var CANCEL = {
         content: '<p>You can come back and take the tour anytime from here</p>',
         setup: function (tour, options, view) {
-            var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('#pf9-tour'), self);
-                tour.view.show();
-                var spot = get_spot_position();
-                $(".tourist-overlay").css("background", "radial-gradient(circle 400px at " + spot.left + "px " + " " + spot.top + "px , rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.4))");
+            var myInterval = setInterval(function() {
+              if($("#pf9-tour")[0].getBoundingClientRect().width === 0){
+                  console.log("Bounding rectangle is non-existent, retrying...");
+              } else {
+                  console.log("OK");
+                  clearInterval(myInterval);
+                  var self = this;
+                  tour.view.setTarget($('#pf9-tour'), self);
+                  tour.view.show();
+                  add_spotlight_overlay();
+              }
             }, short_wait);
         },
         my: 'top center',

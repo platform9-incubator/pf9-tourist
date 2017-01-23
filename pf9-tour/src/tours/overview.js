@@ -1,7 +1,8 @@
 import {
     short_wait, long_wait,
     get_spot_position,
-    add_spotlight_overlay
+    add_spotlight_overlay,
+    waitForSelector
 } from './globals';
 
 export function overview() {
@@ -12,11 +13,7 @@ export function overview() {
         setup: function (tour, options, view) {
             window.location.hash = "#/tour/addhosts";
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('#tour-add-host'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait)
+            waitForSelector("#tour-add-host", tour, self);
         },
         my: 'left top',
         at: 'right center',
@@ -26,11 +23,8 @@ export function overview() {
         content: '<p>Platform9 Managed OpenStack delivers an as-a-Service experience, which means that you do not deal with OpenStack configuration nitty gritty.</p> <p>You simply start by adding your physical servers and making them compute, storage, or networking nodes.</p>',
         setup: function (tour, options) {
             $('#leftnav-infrastructure').click();
-            setTimeout(function () {
-                tour.view.setTarget($('#new-host-btn'), self);
-                tour.view.show()
-                add_spotlight_overlay();
-            }, long_wait)
+            var self = this;
+            waitForSelector("#new-host-btn", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -43,9 +37,7 @@ export function overview() {
             var self = this;
             setTimeout(function () {
                 $('#installer-download').click();
-                tour.view.setTarget($('#download-host-agent-dropdown'), self);
-                tour.view.show()
-                add_spotlight_overlay();
+                waitForSelector("#download-host-agent-dropdown", tour, self);
             }, short_wait)
         },
         nextButton: true,
@@ -97,12 +89,8 @@ export function overview() {
             $('#leftnav-networks').click();
             setTimeout(function () {
                 $('#networking-config-tab a').click();
+                waitForSelector("#dhcp-dns", tour, self);
             }, short_wait);
-            setTimeout(function () {
-                tour.view.show();
-                tour.view.setTarget($('#dhcp-dns'), self);
-                add_spotlight_overlay();
-            }, long_wait);
         },
         nextButton: true,
         closeButton: true,
@@ -113,13 +101,20 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-infrastructure').click();
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('div.online'), self);
-                tour.view.show();
-                $('input:radio').filter(':first').click();
-                $('td').filter(':first').click();
-                $('button.edit-host').click();
-                add_spotlight_overlay();
+            var myInterval = setInterval(function() {
+              if($("div.online")[0].getBoundingClientRect().width === 0){
+                  console.log("Bounding rectangle is non-existent, retrying...");
+              } else {
+                    console.log("OK");
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($('div.online'), self);
+                    tour.view.show();
+                    $('input:radio').filter(':first').click();
+                    $('td').filter(':first').click();
+                    $('button.edit-host').click();
+                    add_spotlight_overlay();
+              }
             }, short_wait);
         },
         nextButton: true,
@@ -134,11 +129,7 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-infrastructure').click();
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('div.online'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait);
+            waitForSelector("div.online", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -153,11 +144,7 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-infrastructure').click();
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('div.online'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait);
+            waitForSelector("div.online", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -170,11 +157,7 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-images').click();
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('.fa-question-circle'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait);
+            waitForSelector(".fa-question-circle", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -185,11 +168,7 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-instances').click();
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('.fa-trash'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait);
+            waitForSelector(".fa-trash", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -201,11 +180,7 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-applications').click();
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('div.murano-application:first-child'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait);
+            waitForSelector("div.murano-application:first-child", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -217,11 +192,7 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-storage').click();
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('#new-volume-btn'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait);
+            waitForSelector("#new-volume-btn", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -233,11 +204,7 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-networks').click();
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('.network-tenant'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait);
+            waitForSelector(".network-tenant", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -249,11 +216,7 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-users').click();
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('#tenant-description'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait);
+            waitForSelector("#tenant-description", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -265,11 +228,7 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-events-alarms').click();
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('#alarm-state'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait);
+            waitForSelector("#alarm-state", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -281,11 +240,7 @@ export function overview() {
         setup: function (tour, options, view) {
             window.location.hash = '#/security#api_access'
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('#api-access-type'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, long_wait);
+            waitForSelector("#api-access-type", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -294,11 +249,7 @@ export function overview() {
         content: '<p>You can come back and take the tour anytime from here</p>',
         setup: function (tour, options, view) {
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('#pf9-tour'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait);
+            waitForSelector("#pf9-tour", tour, self);
         },
         my: 'top center',
         at: 'top center',
@@ -309,11 +260,7 @@ export function overview() {
         content: '<p>You can come back and take the tour anytime from here</p>',
         setup: function (tour, options, view) {
             var self = this;
-            setTimeout(function () {
-                tour.view.setTarget($('#pf9-tour'), self);
-                tour.view.show();
-                add_spotlight_overlay();
-            }, short_wait);
+            waitForSelector("#pf9-tour", tour, self);
         },
         my: 'top center',
         at: 'top center',
