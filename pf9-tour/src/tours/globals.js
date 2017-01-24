@@ -1,4 +1,4 @@
-export const short_wait = 100;
+export const short_wait = 350;
 export const long_wait = 1000;
 
 export function get_spot_position() {
@@ -22,5 +22,5 @@ export function waitForSelector(theSelector, theTour, theSelf){
 			theTour.view.show();
 			add_spotlight_overlay();
 		}
-	}, 100);
+	}, 350);
 }

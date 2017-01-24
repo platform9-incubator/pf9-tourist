@@ -75,7 +75,9 @@ export function kube_overview() {
         " for Kubernetes, then authorize the servers using the Platform9 web UI!</p>",
         setup: function (tour, options) {
             window.location.hash = '#/infrastructureK8s/addnodes';
-            $('.installer-button').click();
+            setTimeout(function() {
+              $('.installer-button').click();
+            }, short_wait)
             var myInterval = setInterval(function() {
               if($("#download-host-agent-dropdown")[0].getBoundingClientRect().width === 0){
                   console.log("Bounding rectangle is non-existent, retrying...");
