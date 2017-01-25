@@ -102,13 +102,13 @@ export function overview() {
             $('#leftnav-infrastructure').click();
             var self = this;
             var myInterval = setInterval(function() {
-              if($("div.online")[0].getBoundingClientRect().width === 0){
+              if($("td.host-status")[0].getBoundingClientRect().width === 0){
                   console.log("Bounding rectangle is non-existent, retrying...");
               } else {
                     console.log("OK");
                     clearInterval(myInterval);
                     var self = this;
-                    tour.view.setTarget($('div.online'), self);
+                    tour.view.setTarget($('td.host-status'), self);
                     tour.view.show();
                     $('input:radio').filter(':first').click();
                     $('td').filter(':first').click();
@@ -129,7 +129,7 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-infrastructure').click();
             var self = this;
-            waitForSelector("div.online", tour, self);
+            waitForSelector("td.host-status", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -144,7 +144,7 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-infrastructure').click();
             var self = this;
-            waitForSelector("div.online", tour, self);
+            waitForSelector("td.host-status", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -164,17 +164,26 @@ export function overview() {
         my: 'left center',
         at: 'right center',
     }, {
-        content: "<p> The Instances menu vars you deploy and manage individual VM instances. You can log into VM instance console, as well as take various actions on the VMs here. </p>",
+        content: "<p> The Instances menu lets you deploy and manage individual VM instances. You can log into VM instance console, as well as take various actions on the VMs here. </p>",
         setup: function (tour, options, view) {
             $('#leftnav-instances').click();
             var self = this;
-            waitForSelector(".fa-trash", tour, self);
+            setTimeout(function() {
+              if ($('input#0').length > 0) {
+                waitForSelector(".fa-trash", tour, self);
+              } else {
+                tour.view.setTarget($('body'), self);
+                tour.view.show()
+                tour.next()
+              }
+
+            }, long_wait)
         },
         nextButton: true,
         closeButton: true,
         my: 'left center',
     }, {
-        content: "<p> The Murano application catalog vars your deploy simple single VM applications, or complex multi-tier applications via single click. </p>\
+        content: "<p> The Murano application catalog lets your deploy simple single VM applications, or complex multi-tier applications via single click. </p>\
     <p> Application developers define new applications by specifying app definition in json or yaml format.</p>\
     <p> Environments are your test playground. You can deploy one or more applications within one environment, test them and then easily destroy when done.</p>",
         setup: function (tour, options, view) {
@@ -187,7 +196,7 @@ export function overview() {
         at: 'right center',
         my: 'left center',
     }, {
-        content: "<p> The Cinder Block Storage management vars you integrate and manage your local storage or iSCSI/NFS shared storage (such as NetApp, Pure, Tintri, and various other off-the-shelf solutions) as a datastore.</p>\
+        content: "<p> The Cinder Block Storage management lets you integrate and manage your local storage or iSCSI/NFS shared storage (such as NetApp, Pure, Tintri, and various other off-the-shelf solutions) as a datastore.</p>\
     <p> You can integrate with multiple storage endpoints, create volume types of each, and hence manage them as different tiers of storage. </p>",
         setup: function (tour, options, view) {
             $('#leftnav-storage').click();
@@ -204,7 +213,7 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-networks').click();
             var self = this;
-            waitForSelector(".network-tenant", tour, self);
+            waitForSelector(".network-shared", tour, self);
         },
         nextButton: true,
         closeButton: true,

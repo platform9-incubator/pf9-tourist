@@ -113,7 +113,7 @@ export function kube_overview() {
         at: 'top center',
     }, {
         content: '<p> Managed Kubernetes supports multi-tenancy out of the box. You can create one or more tenants, map one or more clusters to each' +
-        ' tenant and ass users to be members of tenants.</p>',
+        ' tenant and add users to be members of tenants.</p>',
         setup: function (tour, options, view) {
             var myInterval = setInterval(function() {
               if($("#leftnav-users")[0].getBoundingClientRect().width === 0){
