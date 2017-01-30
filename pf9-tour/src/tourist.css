@@ -120,11 +120,11 @@
 .tourist-popover.popover.top .arrow:after {
   border-top-color: #4aa3df;
 }
-.popover {
+.popover.tourist-popover {
   max-width: 500px;
   padding: 40px;
 }
-.popover-content {
+.popover-content.tourist-popover {
   padding: 5px 0px 0px 0px;
 }
 .tourist-overlay {
