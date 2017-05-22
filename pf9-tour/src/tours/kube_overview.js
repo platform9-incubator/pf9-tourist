@@ -12,7 +12,7 @@ export function kube_overview() {
             if($("#new-cloud-provider-btn")[0].getBoundingClientRect().width === 0){
                 console.log("Bounding rectangle is non-existent, retrying...");
             } else {
-                console.log("OK");
+                // console.log("OK");
                 clearInterval(myInterval);
                 var self = this;
                 tour.view.setTarget($("#new-cloud-provider-btn"), self);
@@ -37,7 +37,7 @@ export function kube_overview() {
               if($("div.radio")[0].getBoundingClientRect().width === 0){
                   console.log("Bounding rectangle is non-existent, retrying...");
               } else {
-                  console.log("OK");
+                  // console.log("OK");
                   clearInterval(myInterval);
                   var self = this;
                   tour.view.setTarget($('div.radio'), self);
@@ -57,7 +57,7 @@ export function kube_overview() {
               if($("#new-node-btn")[0].getBoundingClientRect().width === 0){
                   console.log("Bounding rectangle is non-existent, retrying...");
               } else {
-                  console.log("OK");
+                  // console.log("OK");
                   clearInterval(myInterval);
                   var self = this;
                   tour.view.setTarget($('#new-node-btn'), self);
@@ -82,7 +82,7 @@ export function kube_overview() {
               if($("#download-host-agent-dropdown")[0].getBoundingClientRect().width === 0){
                   console.log("Bounding rectangle is non-existent, retrying...");
               } else {
-                  console.log("OK");
+                  // console.log("OK");
                   clearInterval(myInterval);
                   var self = this;
                   tour.view.setTarget($('#download-host-agent-dropdown'), self);
@@ -119,7 +119,7 @@ export function kube_overview() {
               if($("#leftnav-users")[0].getBoundingClientRect().width === 0){
                   console.log("Bounding rectangle is non-existent, retrying...");
               } else {
-                  console.log("OK");
+                  // console.log("OK");
                   clearInterval(myInterval);
                   var self = this;
                   tour.view.setTarget($('#leftnav-users'), self);
@@ -138,7 +138,7 @@ export function kube_overview() {
               if($("#terminal-iframe-header")[0].getBoundingClientRect().width === 0){
                   console.log("Bounding rectangle is non-existent, retrying...");
               } else {
-                  console.log("OK");
+                  // console.log("OK");
                   clearInterval(myInterval);
                   var self = this;
                   tour.view.setTarget($('#terminal-iframe-header'), self);
@@ -161,7 +161,7 @@ export function kube_overview() {
               if($("#pf9-tour")[0].getBoundingClientRect().width === 0){
                   console.log("Bounding rectangle is non-existent, retrying...");
               } else {
-                  console.log("OK");
+                  // console.log("OK");
                   clearInterval(myInterval);
                   var self = this;
                   tour.view.setTarget($('#pf9-tour'), self);
@@ -173,6 +173,7 @@ export function kube_overview() {
         my: 'top center',
         at: 'top center',
         okButton: true,
+        prevButton: true,
     }]
 
     var CANCEL = {
@@ -182,7 +183,7 @@ export function kube_overview() {
               if($("#pf9-tour")[0].getBoundingClientRect().width === 0){
                   console.log("Bounding rectangle is non-existent, retrying...");
               } else {
-                  console.log("OK");
+                  // console.log("OK");
                   clearInterval(myInterval);
                   var self = this;
                   tour.view.setTarget($('#pf9-tour'), self);

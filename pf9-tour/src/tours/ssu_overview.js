@@ -117,6 +117,7 @@ export function ssu_overview() {
         my: 'top center',
         at: 'top center',
         okButton: true,
+        prevButton: true,
     }]
 
     var CANCEL = {

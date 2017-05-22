@@ -70,7 +70,7 @@
 }
 
 /* PF9 */
-.tour-buttons .tour-next {
+.tour-buttons .tour-next,  .tour-buttons .tour-prev{
   border-radius: 27.5px;
   width: 100px;
   background: #fff;

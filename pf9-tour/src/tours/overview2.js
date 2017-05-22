@@ -11,10 +11,29 @@ export function overview2() {
     $(".popover.tourist-popover").remove();
     var STEPS = [{
         content: '<p>You will notice that your Platform9 "Dashboard" shows this step-by-step wizard. The wizard will guide you through a step-by-step process to get started.</p>',
+        // setup: function (tour, options, view) {
+        //     window.location.hash = "#/tour/addhosts";
+        //     var self = this;
+        //     setTimeout(function () {
+        //         waitForSelector("#tour-add-host", tour, self);
+        //     }, short_wait)
+        // },
         setup: function (tour, options, view) {
             window.location.hash = "#/tour/addhosts";
             var self = this;
-            waitForSelector("#tour-add-host", tour, self);
+            var myInterval = setInterval(function() {
+              if($("#tour-add-host")[0].getBoundingClientRect().width === 0){
+                  console.log("Bounding rectangle is non-existent, retrying...");
+              } else {
+                    // console.log("OK");
+                    clearInterval(myInterval);
+                    var self = this;
+                    // add_spotlight_overlay();
+                    setTimeout(function () {
+                        waitForSelector("#tour-add-host", tour, self);
+                    }, short_wait)
+              }
+            }, short_wait);
         },
         my: 'left top',
         at: 'right center',
@@ -114,7 +133,7 @@ export function overview2() {
               if($("td.host-status")[0].getBoundingClientRect().width === 0){
                   console.log("Bounding rectangle is non-existent, retrying...");
               } else {
-                    console.log("OK");
+                    // console.log("OK");
                     scroll_to('td.host-status');
                     clearInterval(myInterval);
                     var self = this;
@@ -300,6 +319,7 @@ export function overview2() {
         my: 'top center',
         at: 'top center',
         okButton: true,
+        prevButton: true,
     }]
 
     var CANCEL = {

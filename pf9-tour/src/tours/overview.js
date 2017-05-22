@@ -115,7 +115,7 @@ export function overview() {
               if($("td.host-status")[0].getBoundingClientRect().width === 0){
                   console.log("Bounding rectangle is non-existent, retrying...");
               } else {
-                    console.log("OK");
+                    // console.log("OK");
                     scroll_to('td.host-status');
                     clearInterval(myInterval);
                     var self = this;
@@ -283,6 +283,7 @@ export function overview() {
         my: 'top center',
         at: 'top center',
         okButton: true,
+        prevButton: true,
     }]
 
     var CANCEL = {
