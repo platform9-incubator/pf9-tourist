@@ -7,11 +7,10 @@ import {
     scroll_to
 } from './globals';
 
-export function overview() {
+export function overview2() {
     $(".popover.tourist-popover").remove();
     var STEPS = [{
-        content: '<p>The sandbox environment is pre-populated with authorized servers. But when you start with Platform9, the\
-      "Dashboard" shows this step-by-step wizard to guide you through getting started. </p>',
+        content: '<p>You will notice that your Platform9 "Dashboard" shows this step-by-step wizard. The wizard will guide you through a step-by-step process to get started.</p>',
         setup: function (tour, options, view) {
             window.location.hash = "#/tour/addhosts";
             var self = this;
@@ -124,6 +123,7 @@ export function overview() {
                     $('input:radio').filter(':first').click();
                     $('td').filter(':first').click();
                     $('button.edit-host').click();
+                    // add_spotlight_overlay();
                     setTimeout(function () {
                         add_spotlight_overlay();
                     }, short_wait);
@@ -189,9 +189,10 @@ export function overview() {
               if ($('input#0').length > 0) {
                 waitForSelector(".fa-trash", tour, self);
               } else {
-                tour.view.setTarget($('body'), self);
-                tour.view.show()
-                tour.next()
+              	waitForSelector("#new-vminstance-btn", tour, self);
+                // tour.view.setTarget($('body'), self);
+                // tour.view.show()
+                // tour.next()
               }
 
             }, long_wait)
@@ -205,8 +206,11 @@ export function overview() {
     <p> Environments are your test playground. You can deploy one or more applications within one environment, test them and then easily destroy when done.</p>",
         setup: function (tour, options, view) {
             $('#leftnav-applications').click();
+            setTimeout(function () {
+                $('a.inactive').click();
+                waitForSelector("div.murano-application:first-child", tour, self);
+            }, short_wait);
             var self = this;
-            waitForSelector("div.murano-application:first-child", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -232,12 +236,25 @@ export function overview() {
     <p> You can create internal networks, map them to external networks via routers, create security groups, and allocate floating (public) IPs for your VMs. </p>",
         setup: function (tour, options, view) {
             $('#leftnav-networks').click();
+            // var self = this;
+            // waitForSelector("#new-network-btn", tour, self);
             var self = this;
-            waitForSelector(".network-shared", tour, self);
+            setTimeout(function() {
+              if ($('#new-network').filter(":visible").length > 0) {
+                waitForSelector("#new-network", tour, self);
+              } else {
+              	waitForSelector("#new-network-btn", tour, self);
+                // tour.view.setTarget($('body'), self);
+                // tour.view.show()
+                // tour.next()
+              }
+
+            }, short_wait)
         },
         nextButton: true,
         closeButton: true,
-        at: 'right center',
+        at: 'bottom center',
+        my: 'top right',
     }, {
         content: "<p> This is the multi-tenancy view via Keystone. Platform9 creates a federated keystone deployment so your various OpenStack regions spread across multiple datacenters\
     are still managed via a single pane UI, unified multi-tenancy, and APIs.</p>\
