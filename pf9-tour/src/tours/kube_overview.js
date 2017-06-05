@@ -10,7 +10,15 @@ export function kube_overview() {
           window.location.hash = '#/infrastructureK8s#cps';
           var myInterval = setInterval(function() {
             if($("#new-cloud-provider-btn")[0].getBoundingClientRect().width === 0){
-                console.log("Bounding rectangle is non-existent, retrying...");
+                if($("#new-cloudprovider-btn")[0].getBoundingClientRect().width === 0){
+                      console.log("Bounding rectangle is non-existent, retrying...");
+                  } else {
+                      clearInterval(myInterval);
+                      var self = this;
+                      tour.view.setTarget($("#new-cloudprovider-btn"), self);
+                      tour.view.show();
+                      add_spotlight_overlay();
+                  }
             } else {
                 // console.log("OK");
                 clearInterval(myInterval);
@@ -55,7 +63,15 @@ export function kube_overview() {
             window.location.hash = '#/infrastructureK8s#nodes';
             var myInterval = setInterval(function() {
               if($("#new-node-btn")[0].getBoundingClientRect().width === 0){
-                  console.log("Bounding rectangle is non-existent, retrying...");
+                  if($("a[href$='#/infrastructure/addnodes']")[0].getBoundingClientRect().width === 0) {
+                    console.log("Bounding rectangle is non-existent, retrying...");
+                  } else {
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($("a[href$='#/infrastructure/addnodes']"), self);
+                    tour.view.show();
+                    add_spotlight_overlay();
+                  }
               } else {
                   // console.log("OK");
                   clearInterval(myInterval);
@@ -116,15 +132,28 @@ export function kube_overview() {
         ' tenant and add users to be members of tenants.</p>',
         setup: function (tour, options, view) {
             var myInterval = setInterval(function() {
-              if($("#leftnav-users")[0].getBoundingClientRect().width === 0){
-                  console.log("Bounding rectangle is non-existent, retrying...");
-              } else {
-                  // console.log("OK");
-                  clearInterval(myInterval);
-                  var self = this;
-                  tour.view.setTarget($('#leftnav-users'), self);
-                  tour.view.show();
-                  add_spotlight_overlay();
+              if($("#leftnav-users")[0]) {
+                if($("#leftnav-users")[0].getBoundingClientRect().width === 0){
+                    console.log("Bounding rectangle is non-existent, retrying...");
+                } else {
+                    // console.log("OK");
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($('#leftnav-users'), self);
+                    tour.view.show();
+                    add_spotlight_overlay();
+                }
+              } else if ($("#leftnav-k8s-users")[0]) {
+                if($("#leftnav-k8s-users")[0].getBoundingClientRect().width === 0){
+                    console.log("Bounding rectangle is non-existent, retrying...");
+                } else {
+                    // console.log("OK");
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($('#leftnav-k8s-users'), self);
+                    tour.view.show();
+                    add_spotlight_overlay();
+                }
               }
             }, short_wait);
         },
