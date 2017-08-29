@@ -184,7 +184,7 @@ export function kube_overview() {
         my: 'bottom center',
         at: 'top center',
     }, {
-        content: '<p>Congragulations! You have now completed the tour of Platform9 Managed Kubernetes. You can come back and take the tour anytime from here.</p>',
+        content: '<p>Congratulations! You have now completed the tour of Platform9 Managed Kubernetes. You can come back and take the tour anytime from here.</p>',
         setup: function (tour, options, view) {
             var myInterval = setInterval(function() {
               if($("#pf9-tour")[0].getBoundingClientRect().width === 0){

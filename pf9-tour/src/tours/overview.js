@@ -275,7 +275,7 @@ export function overview() {
         closeButton: true,
         at: 'left center',
     }, {
-        content: '<p>"Congratulations! You have finished the Platform9 Manged OpenStack tour. You can come back and take the tour anytime from here</p>',
+        content: '<p>"Congratulations! You have finished the Platform9 Managed OpenStack tour. You can come back and take the tour anytime from here</p>',
         setup: function (tour, options, view) {
             var self = this;
             waitForSelector("#pf9-tour", tour, self);
