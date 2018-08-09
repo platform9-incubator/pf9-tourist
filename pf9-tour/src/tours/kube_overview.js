@@ -36,19 +36,19 @@ export function kube_overview() {
         nextButton: true
     }, {
         content: '<p>Once the cloud provider is added, you can directly go to cluster creation and select' +
-        ' the <b>Auto deploy</b> option for cluster deployment. This option will then walk you through the steps' +
-        ' for fully automated deployment of Kubernetes clusters on AWS. We handle every piece of configuration behind' +
-        ' the scene. </p> <p><a href="https://platform9.com/support/create-multi-master-highly-available-kubernetes-clusters/" target="_blank"> https://platform9.com/support/create-multi-master-highly-available-kubernetes-clusters/ </a></p>',
+        ' the cloud provider for cluster deployment. This option will then walk you through the steps' +
+        ' for fully automated deployment of Kubernetes clusters. We handle every piece of configuration behind' +
+        ' the scenes. </p> <p><a href="https://platform9.com/support/create-multi-master-highly-available-kubernetes-clusters/" target="_blank"> https://platform9.com/support/create-multi-master-highly-available-kubernetes-clusters/ </a></p>',
         setup: function (tour, options) {
             window.location.hash = '#/kubernetes/new/cluster';
             var myInterval = setInterval(function() {
-              if($("div.radio")[0].getBoundingClientRect().width === 0){
+              if($("#cluster-cloud-provider")[0].getBoundingClientRect().width === 0){
                   console.log("Bounding rectangle is non-existent, retrying...");
               } else {
                   // console.log("OK");
                   clearInterval(myInterval);
                   var self = this;
-                  tour.view.setTarget($('div.radio'), self);
+                  tour.view.setTarget($('#cluster-cloud-provider'), self);
                   tour.view.show();
                   add_spotlight_overlay();
               }
@@ -127,38 +127,6 @@ export function kube_overview() {
         closeButton: true,
         my: 'top center',
         at: 'top center',
-    }, {
-        content: '<p> Managed Kubernetes supports multi-tenancy out of the box. You can create one or more tenants, map one or more clusters to each' +
-        ' tenant and add users to be members of tenants.</p>',
-        setup: function (tour, options, view) {
-            var myInterval = setInterval(function() {
-              if($("#leftnav-users")[0]) {
-                if($("#leftnav-users")[0].getBoundingClientRect().width === 0){
-                    console.log("Bounding rectangle is non-existent, retrying...");
-                } else {
-                    // console.log("OK");
-                    clearInterval(myInterval);
-                    var self = this;
-                    tour.view.setTarget($('#leftnav-users'), self);
-                    tour.view.show();
-                    add_spotlight_overlay();
-                }
-              } else if ($("#leftnav-k8s-users")[0]) {
-                if($("#leftnav-k8s-users")[0].getBoundingClientRect().width === 0){
-                    console.log("Bounding rectangle is non-existent, retrying...");
-                } else {
-                    // console.log("OK");
-                    clearInterval(myInterval);
-                    var self = this;
-                    tour.view.setTarget($('#leftnav-k8s-users'), self);
-                    tour.view.show();
-                    add_spotlight_overlay();
-                }
-              }
-            }, short_wait);
-        },
-        nextButton: true,
-        closeButton: true,
     }, {
         content: "<p> Finally, the built-in CLI lets you connect to any cluster you've created and run Kubernetes commands directly from the web browser.</p>",
         setup: function (tour, options, view) {
