@@ -48,12 +48,7 @@ export function ssu_overview() {
             $('#leftnav-instances').click();
             var self = this;
             setTimeout(function() {
-              if ($('input#0').length > 0) {
-                waitForSelector(".fa-trash", tour, self);
-              } else {
                 waitForSelector("#new-vminstance-btn", tour, self);
-              }
-
             }, long_wait)
         },
         nextButton: true,

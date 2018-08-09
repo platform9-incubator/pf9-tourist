@@ -205,20 +205,15 @@ export function overview2() {
             $('#leftnav-instances').click();
             var self = this;
             setTimeout(function() {
-              if ($('input#0').length > 0) {
-                waitForSelector(".fa-trash", tour, self);
-              } else {
-              	waitForSelector("#new-vminstance-btn", tour, self);
+                waitForSelector("#all-tenants", tour, self);
                 // tour.view.setTarget($('body'), self);
                 // tour.view.show()
                 // tour.next()
-              }
-
             }, long_wait)
         },
         nextButton: true,
         closeButton: true,
-        my: 'left center',
+        my: 'right center',
     }, {
         content: "<p> The Murano application catalog lets your deploy simple single VM applications, or complex multi-tier applications via single click. </p>\
     <p> Application developers define new applications by specifying app definition in json or yaml format.</p>\
@@ -227,8 +222,8 @@ export function overview2() {
             $('#leftnav-applications').click();
             setTimeout(function () {
                 $('a.inactive').click();
-                waitForSelector("div.murano-application:first-child", tour, self);
-            }, short_wait);
+                waitForSelector("div.murano-application.prebuilt:first-child", tour, self);
+            }, long_wait);
             var self = this;
         },
         nextButton: true,
@@ -262,7 +257,7 @@ export function overview2() {
               if ($('#new-network').filter(":visible").length > 0) {
                 waitForSelector("#new-network", tour, self);
               } else {
-              	waitForSelector("#new-network-btn", tour, self);
+                waitForSelector("#new-network-btn", tour, self);
                 // tour.view.setTarget($('body'), self);
                 // tour.view.show()
                 // tour.next()

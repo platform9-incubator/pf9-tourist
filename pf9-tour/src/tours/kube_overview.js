@@ -52,6 +52,16 @@ export function kube_overview() {
                   tour.view.show();
                   add_spotlight_overlay();
               }
+              if($("#new-cloud-provider-btn")[0].getBoundingClientRect().width === 0){
+                  console.log("Bounding rectangle is non-existent, retrying...");
+              } else {
+                  // console.log("OK");
+                  clearInterval(myInterval);
+                  var self = this;
+                  tour.view.setTarget($('#new-cloud-provider-btn'), self);
+                  tour.view.show();
+                  add_spotlight_overlay();
+              }
             }, short_wait);
         },
         nextButton: true,

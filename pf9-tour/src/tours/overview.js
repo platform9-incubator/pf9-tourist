@@ -186,14 +186,7 @@ export function overview() {
             $('#leftnav-instances').click();
             var self = this;
             setTimeout(function() {
-              if ($('input#0').length > 0) {
                 waitForSelector(".fa-trash", tour, self);
-              } else {
-                tour.view.setTarget($('body'), self);
-                tour.view.show()
-                tour.next()
-              }
-
             }, long_wait)
         },
         nextButton: true,
@@ -257,11 +250,11 @@ export function overview() {
         setup: function (tour, options, view) {
             $('#leftnav-events-alarms').click();
             var self = this;
-            waitForSelector("#alarm-state", tour, self);
+            waitForSelector(".top-controls", tour, self);
         },
         nextButton: true,
         closeButton: true,
-        at: 'right center',
+        at: 'left center',
     }, {
         content: '<p> Finally, API Access provides you details of all the OpenStack endpoints that you can connect to and use for your API and CLI automation.</p>\
     <p> OpenStack offers a powerful set of REST APIs and CLIs which are fully supported by Platform9.</p>\
