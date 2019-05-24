@@ -275,8 +275,8 @@ export function overview() {
         },
         my: 'top center',
         at: 'top center',
-        okButton: true,
-        prevButton: true,
+        closeButton: true,
+        okButton: true
     }]
 
     var CANCEL = {

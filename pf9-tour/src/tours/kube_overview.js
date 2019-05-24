@@ -9,18 +9,15 @@ export function kube_overview() {
         setup: function (tour, options, view) {
           window.location.hash = '#/infrastructureK8s#cps';
           var myInterval = setInterval(function() {
-            if($("#new-cloud-provider-btn")[0].getBoundingClientRect().width === 0){
-                if($("#new-cloudprovider-btn")[0].getBoundingClientRect().width === 0){
-                      console.log("Bounding rectangle is non-existent, retrying...");
-                  } else {
-                      clearInterval(myInterval);
-                      var self = this;
-                      tour.view.setTarget($("#new-cloudprovider-btn"), self);
-                      tour.view.show();
-                      add_spotlight_overlay();
-                  }
+            if($("#new-cloud-provider-btn")[0] && $("#new-cloud-provider-btn")[0].getBoundingClientRect().width === 0) {
+              console.log("Bounding rectangle is non-existent, retrying...");
+            } else if ($(".no-data-page")[0] && $(".no-data-page")[0].getBoundingClientRect().width !== 0) {
+                clearInterval(myInterval);
+                var self = this;
+                tour.view.setTarget($("#new-cloudprovider-btn"), self);
+                tour.view.show();
+                add_spotlight_overlay();
             } else {
-                // console.log("OK");
                 clearInterval(myInterval);
                 var self = this;
                 tour.view.setTarget($("#new-cloud-provider-btn"), self);
@@ -61,6 +58,9 @@ export function kube_overview() {
                   tour.view.setTarget($('#new-cloud-provider-btn'), self);
                   tour.view.show();
                   add_spotlight_overlay();
+              }
+              if ($("#manual-deploy-checkbox")[0] && $("#manual-deploy-checkbox")[0].checked) {
+                $("#manual-deploy-checkbox")[0].click();
               }
             }, short_wait);
         },
@@ -177,10 +177,10 @@ export function kube_overview() {
               }
             }, short_wait);
         },
+        closeButton: true,
         my: 'top center',
         at: 'top center',
-        okButton: true,
-        prevButton: true,
+        okButton: true
     }]
 
     var CANCEL = {

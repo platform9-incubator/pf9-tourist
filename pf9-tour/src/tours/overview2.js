@@ -11,13 +11,6 @@ export function overview2() {
     $(".popover.tourist-popover").remove();
     var STEPS = [{
         content: '<p>You will notice that your Platform9 "Dashboard" shows this step-by-step wizard. The wizard will guide you through a step-by-step process to get started.</p>',
-        // setup: function (tour, options, view) {
-        //     window.location.hash = "#/tour/addhosts";
-        //     var self = this;
-        //     setTimeout(function () {
-        //         waitForSelector("#tour-add-host", tour, self);
-        //     }, short_wait)
-        // },
         setup: function (tour, options, view) {
             window.location.hash = "#/tour/addhosts";
             var self = this;
@@ -130,9 +123,18 @@ export function overview2() {
             $('#leftnav-infrastructure').click();
             var self = this;
             var myInterval = setInterval(function() {
-              if($("td.host-status")[0].getBoundingClientRect().width === 0){
-                  console.log("Bounding rectangle is non-existent, retrying...");
-              } else {
+                if($("td.host-status")[0] && $("td.host-status")[0].getBoundingClientRect().width === 0){
+                    console.log("Bounding rectangle is non-existent, retrying...");
+                } else if ($(".no-data-page")[0] && $(".no-data-page")[0].getBoundingClientRect().width !== 0) {
+                    scroll_to('#new-host-btn');
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($('#new-host-btn'), self);
+                    tour.view.show();
+                    setTimeout(function () {
+                        add_spotlight_overlay();
+                    }, short_wait);
+                } else {
                     // console.log("OK");
                     scroll_to('td.host-status');
                     clearInterval(myInterval);
@@ -159,12 +161,18 @@ export function overview2() {
     <p> <a href="https://www.youtube.com/watch?v=GTsRXvm4P4c&feature=youtu.be" target="_blank">Watch Video of Platform9 on VMware vSphere</a></p>\
     <p> <a href="https://youtu.be/Vhetuc-efg4" target="_blank">Watch Video of Platform9 OpenStack hybrid cloud deployment on Amazon AWS</p>',
         setup: function (tour, options, view) {
-            $('#leftnav-infrastructure').click();
             var self = this;
-            setTimeout(function () {
-                scroll_to('td.host-status');
-            }, short_wait);
-            waitForSelector("td.host-status", tour, self);
+            if ($('td.host-status')[0]) {
+                setTimeout(function () {
+                    scroll_to('td.host-status');
+                }, short_wait);
+                waitForSelector("td.host-status", tour, self);
+            } else {
+                setTimeout(function () {
+                    scroll_to('#new-host-btn');
+                });
+                waitForSelector("#new-host-btn", tour, self);
+            }
         },
         nextButton: true,
         closeButton: true,
@@ -177,10 +185,14 @@ export function overview2() {
     <p> Platform9 also supports VM and Application High Availibility via Availibility Zones. </p>\
     <p> <a href='https://youtu.be/I7mXlK5qV50' target='_blank'>Watch Video of VM and App HA</p>",
         setup: function (tour, options, view) {
-            $('#leftnav-infrastructure').click();
             var self = this;
-            scroll_to('td.host-status');
-            waitForSelector("td.host-status", tour, self);
+            if ($('td.host-status')[0]) {
+                scroll_to('td.host-status');
+                waitForSelector("td.host-status", tour, self);
+            } else {
+                scroll_to('#new-host-btn');
+                waitForSelector('#new-host-btn', tour, self);
+            }
         },
         nextButton: true,
         closeButton: true,
@@ -193,7 +205,31 @@ export function overview2() {
         setup: function (tour, options, view) {
             $('#leftnav-images').click();
             var self = this;
-            waitForSelector(".fa-question-circle", tour, self);
+
+            var myInterval = setInterval(function() {
+                if ($(".image-status-icon")[0] && $(".image-status-icon")[0].getBoundingClientRect().width === 0){
+                    console.log("Bounding rectangle is non-existent, retrying...");
+                } else if ($(".no-data-page")[0] && $(".no-data-page")[0].getBoundingClientRect().width !== 0) {
+                    scroll_to('#new-image-btn');
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($('#new-image-btn'), self);
+                    tour.view.show();
+                    setTimeout(function () {
+                        add_spotlight_overlay();
+                    }, short_wait);
+                } else {
+                    // console.log("OK");
+                    scroll_to('.image-status-icon');
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($('.image-status-icon'), self);
+                    tour.view.show();
+                    setTimeout(function () {
+                        add_spotlight_overlay();
+                    }, short_wait);
+              }
+            }, short_wait);
         },
         nextButton: true,
         closeButton: true,
@@ -204,18 +240,38 @@ export function overview2() {
         setup: function (tour, options, view) {
             $('#leftnav-instances').click();
             var self = this;
-            setTimeout(function() {
-                waitForSelector("#all-tenants", tour, self);
-                // tour.view.setTarget($('body'), self);
-                // tour.view.show()
-                // tour.next()
-            }, long_wait)
+
+            var myInterval = setInterval(function() {
+                if ($("#instances-table")[0] && $("#instances-table")[0].getBoundingClientRect().width === 0){
+                    console.log("Bounding rectangle is non-existent, retrying...");
+                } else if ($(".no-data-page")[0] && $(".no-data-page")[0].getBoundingClientRect().width !== 0) {
+                    scroll_to('#new-instance-btn');
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($('#new-instance-btn'), self);
+                    tour.view.show();
+                    setTimeout(function () {
+                        add_spotlight_overlay();
+                    }, long_wait);
+                } else {
+                    // console.log("OK");
+                    scroll_to('#instances-tab');
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($('#instances-tab'), self);
+                    tour.view.show();
+                    setTimeout(function () {
+                        add_spotlight_overlay();
+                    }, long_wait);
+              }
+            }, long_wait);
         },
         nextButton: true,
         closeButton: true,
-        my: 'right center',
+        at: 'bottom right',
+        my: 'top left'
     }, {
-        content: "<p> The Murano application catalog lets your deploy simple single VM applications, or complex multi-tier applications via single click. </p>\
+        content: "<p> The Murano application catalog lets you deploy simple single VM applications, or complex multi-tier applications via single click. </p>\
     <p> Application developers define new applications by specifying app definition in json or yaml format.</p>\
     <p> Environments are your test playground. You can deploy one or more applications within one environment, test them and then easily destroy when done.</p>",
         setup: function (tour, options, view) {
@@ -250,17 +306,12 @@ export function overview2() {
     <p> You can create internal networks, map them to external networks via routers, create security groups, and allocate floating (public) IPs for your VMs. </p>",
         setup: function (tour, options, view) {
             $('#leftnav-networks').click();
-            // var self = this;
-            // waitForSelector("#new-network-btn", tour, self);
             var self = this;
             setTimeout(function() {
               if ($('#new-network').filter(":visible").length > 0) {
                 waitForSelector("#new-network", tour, self);
               } else {
                 waitForSelector("#new-network-btn", tour, self);
-                // tour.view.setTarget($('body'), self);
-                // tour.view.show()
-                // tour.next()
               }
 
             }, short_wait)
@@ -288,11 +339,12 @@ export function overview2() {
         setup: function (tour, options, view) {
             $('#leftnav-events-alarms').click();
             var self = this;
-            waitForSelector("#alarm-state", tour, self);
+            waitForSelector('#tenants-tab', tour, self);
         },
         nextButton: true,
         closeButton: true,
-        at: 'right center',
+        at: 'bottom right',
+        my: 'top left'
     }, {
         content: '<p> Finally, API Access provides you details of all the OpenStack endpoints that you can connect to and use for your API and CLI automation.</p>\
     <p> OpenStack offers a powerful set of REST APIs and CLIs which are fully supported by Platform9.</p>\
@@ -313,8 +365,8 @@ export function overview2() {
         },
         my: 'top center',
         at: 'top center',
-        okButton: true,
-        prevButton: true,
+        closeButton: true,
+        okButton: true
     }]
 
     var CANCEL = {

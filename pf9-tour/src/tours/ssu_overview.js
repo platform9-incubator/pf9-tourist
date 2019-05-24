@@ -36,7 +36,31 @@ export function ssu_overview() {
         setup: function (tour, options, view) {
             $('#leftnav-images').click();
             var self = this;
-            waitForSelector(".fa-question-circle", tour, self);
+
+            var myInterval = setInterval(function() {
+                if ($(".image-status-icon")[0] && $(".image-status-icon")[0].getBoundingClientRect().width === 0){
+                    console.log("Bounding rectangle is non-existent, retrying...");
+                } else if ($(".no-data-page")[0] && $(".no-data-page")[0].getBoundingClientRect().width !== 0) {
+                    scroll_to('#new-image-btn');
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($('#new-image-btn'), self);
+                    tour.view.show();
+                    setTimeout(function () {
+                        add_spotlight_overlay();
+                    }, short_wait);
+                } else {
+                    // console.log("OK");
+                    scroll_to('.image-status-icon');
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($('.image-status-icon'), self);
+                    tour.view.show();
+                    setTimeout(function () {
+                        add_spotlight_overlay();
+                    }, short_wait);
+                }
+            }, short_wait);
         },
         nextButton: true,
         closeButton: true,
@@ -47,9 +71,31 @@ export function ssu_overview() {
         setup: function (tour, options, view) {
             $('#leftnav-instances').click();
             var self = this;
-            setTimeout(function() {
-                waitForSelector("#new-vminstance-btn", tour, self);
-            }, long_wait)
+
+            var myInterval = setInterval(function() {
+                if ($("#instances-table")[0] && $("#instances-table")[0].getBoundingClientRect().width === 0){
+                    console.log("Bounding rectangle is non-existent, retrying...");
+                } else if ($(".no-data-page")[0] && $(".no-data-page")[0].getBoundingClientRect().width !== 0) {
+                    scroll_to('#new-instance-btn');
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($('#new-instance-btn'), self);
+                    tour.view.show();
+                    setTimeout(function () {
+                        add_spotlight_overlay();
+                    }, long_wait);
+                } else {
+                    // console.log("OK");
+                    scroll_to('#instances-tab');
+                    clearInterval(myInterval);
+                    var self = this;
+                    tour.view.setTarget($('#instances-tab'), self);
+                    tour.view.show();
+                    setTimeout(function () {
+                        add_spotlight_overlay();
+                    }, long_wait);
+              }
+            }, long_wait);
         },
         nextButton: true,
         closeButton: true,
@@ -59,7 +105,7 @@ export function ssu_overview() {
         setup: function (tour, options, view) {
             $('#leftnav-flavors').click();
             var self = this;
-            waitForSelector(".flavor-tags", tour, self);
+            waitForSelector(".flavor-name", tour, self);
         },
         nextButton: true,
         closeButton: true,
@@ -111,8 +157,8 @@ export function ssu_overview() {
         },
         my: 'top center',
         at: 'top center',
-        okButton: true,
-        prevButton: true,
+        closeButton: true,
+        okButton: true
     }]
 
     var CANCEL = {
